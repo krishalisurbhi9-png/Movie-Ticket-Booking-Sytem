@@ -2,26 +2,37 @@
 #include <string>
 using namespace std;
 
-class Customer {
+class Payment {
 private:
-    int customerId;
-    string name;
-    string phone;
+    string method;
+    bool successful;
 
 public:
-    Customer(int id, string n, string p) {
-        customerId = id;
-        name = n;
-        phone = p;
+    Payment(string m) {
+        method = m;
+        successful = false;
     }
 
-    void displayCustomer() {
-        cout << "Customer ID : " << customerId << endl;
-        cout << "Name : " << name << endl;
-        cout << "Phone : " << phone << endl;
+    bool makePayment(double amount) {
+        cout << "Payment Method: " << method << endl;
+        cout << "Amount: Rs." << amount << endl;
+
+        char choice;
+        cout << "Confirm payment? (Y/N): ";
+        cin >> choice;
+
+        if (choice == 'Y' || choice == 'y') {
+            successful = true;
+            cout << "Payment Successful!" << endl;
+        } else {
+            successful = false;
+            cout << "Payment Failed!" << endl;
+        }
+
+        return successful;
     }
 
-    string getName() {
-        return name;
+    bool isSuccessful() {
+        return successful;
     }
 };
